@@ -24,17 +24,25 @@ module.exports = {
         loader: "source-map-loader",
       },
       {
+        test: /\.js$/,
+        exclude: /node_modules/,
+        use: {
+          loader: "babel-loader",
+        },
+      },
+      {
         test: /\.css$/,
-        loader: "css-loader",
+        use: [MiniCssExtractPlugin.loader, "css-loader", "postcss-loader"],
       },
     ],
   },
   plugins: [
+    new MiniCssExtractPlugin({
+      filename: "./src/assets/main.css",
+    }),
     new HtmlWebpackPlugin({
       template: path.resolve(__dirname, "src", "index.html"),
-    }),
-    new MiniCssExtractPlugin({
-      filename: "./src/yourfile.css",
+      filename: "./index.html",
     }),
   ],
 };

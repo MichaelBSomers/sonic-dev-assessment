@@ -2,7 +2,7 @@ import { useQuery } from "@apollo/client";
 import { rocketsQuery } from "../queries";
 
 interface Rocket {
-  id: "falcon1";
+  id: string;
   active: boolean;
   boosters: number;
   company: string;

@@ -3,7 +3,7 @@ import { HashRouter as Router } from "react-router-dom";
 import { InMemoryCache, ApolloClient, ApolloProvider } from "@apollo/client";
 import ReactDOM from "react-dom";
 import App from "./App";
-import "./tailwind.output.css";
+import "./assets/main.css";
 
 const client = new ApolloClient({
   connectToDevTools: true,
