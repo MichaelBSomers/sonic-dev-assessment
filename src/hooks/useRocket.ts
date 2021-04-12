@@ -1,5 +1,5 @@
 import { useQuery } from "@apollo/client";
-import { rocketsQuery } from "../queries";
+import { rocketQuery } from "../queries";
 
 interface Rocket {
   id: string;
@@ -95,8 +95,11 @@ interface Rocket {
   };
 }
 
-const useRockets = () => {
-  return useQuery<{ rockets: Rocket }>(rocketsQuery);
+const useRockets = (rocketId: String) => {
+  console.log("rocketId", rocketId);
+  return useQuery<{ rocket: Rocket }>(rocketQuery, {
+    variables: { id: rocketId },
+  });
 };
 
 export default useRockets;
