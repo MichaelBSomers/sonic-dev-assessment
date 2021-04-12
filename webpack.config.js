@@ -11,6 +11,10 @@ module.exports = {
   },
   resolve: {
     extensions: [".js", ".jsx", ".json", ".ts", ".tsx"],
+    alias: {
+      react: path.resolve("node_modules/react"),
+      "react-dom": path.resolve("node_modules/react-dom"),
+    },
   },
   module: {
     rules: [
@@ -22,13 +26,6 @@ module.exports = {
         enforce: "pre",
         test: /\.js$/,
         loader: "source-map-loader",
-      },
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: "babel-loader",
-        },
       },
       {
         test: /\.css$/,

@@ -14,6 +14,7 @@ module.exports = {
       serif: ["Merriweather", "serif"],
     },
     extend: {
+      tableLayout: ["hover", "focus"],
       spacing: {
         128: "32rem",
         144: "36rem",

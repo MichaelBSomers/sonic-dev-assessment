@@ -11,6 +11,7 @@ import {
 } from "../utility/utility";
 
 const Rocket: React.FC<RouteComponentProps<{}>> = () => {
+  let [showUsers, setShowUsers] = useState(false);
   let query = useQuery();
 
   const { loading, error, data } = useRocket(query.get("id"));
@@ -61,9 +62,10 @@ const Rocket: React.FC<RouteComponentProps<{}>> = () => {
   return (
     <div>
       <div className="text-center">Rocket: {data?.rocket.name}</div>
-      <div>
-        <Users />
-      </div>
+      <button onClick={() => setShowUsers(!showUsers)} className="p-1 border-2">
+        {!showUsers ? "Show Users" : "Hide Users"}
+      </button>
+      {showUsers && <Users rocketId={data?.rocket.id} />}
       <ul>{buildData(data?.rocket)}</ul>
     </div>
   );
