@@ -96,7 +96,6 @@ interface Rocket {
 }
 
 const useRockets = (rocketId: String) => {
-  console.log("rocketId", rocketId);
   return useQuery<{ rocket: Rocket }>(rocketQuery, {
     variables: { id: rocketId },
   });

@@ -1,7 +1,7 @@
 import { gql } from "@apollo/client";
 
 export default gql`
-  query Rocket($id: ID!) {
+  query rocketQuery($id: ID!) {
     rocket(id: $id) {
       id
       active

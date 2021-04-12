@@ -2,30 +2,15 @@ import React, { useEffect, useState } from "react";
 import { useRocket } from "../hooks";
 import { RouteComponentProps } from "react-router-dom";
 import { BrowserRouter as Router, Link, useLocation } from "react-router-dom";
+import Users from "../components/Users";
+import {
+  capitalize_Words,
+  isObject,
+  isBoolean,
+  useQuery,
+} from "../utility/utility";
 
-const capitalize_Words = (str: String) => {
-  return str.replace(/\w\S*/g, function (txt) {
-    return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
-  });
-};
-const isObject = (obj: any) => {
-  let type = typeof obj;
-  return type === "function" || (type === "object" && !!obj);
-};
-
-const isBoolean = (obj: any) => {
-  let type = typeof obj;
-  return type === "boolean";
-};
-
-console.log(capitalize_Words("js string exercises"));
-
-const Rocket: React.FC<RouteComponentProps<{}>> = ({ history }) => {
-  let [rocketName, setRocketName] = useState(null);
-  let [rocketInfo, setRocketInfo] = useState(null);
-  function useQuery() {
-    return new URLSearchParams(useLocation().search);
-  }
+const Rocket: React.FC<RouteComponentProps<{}>> = () => {
   let query = useQuery();
 
   const { loading, error, data } = useRocket(query.get("id"));
@@ -35,7 +20,7 @@ const Rocket: React.FC<RouteComponentProps<{}>> = ({ history }) => {
   }
 
   if (error) {
-    return <div> Error </div>;
+    return <div className="text-center"> Error </div>;
   }
 
   const getValues = (values: Array<any>) => {
@@ -73,11 +58,13 @@ const Rocket: React.FC<RouteComponentProps<{}>> = ({ history }) => {
     return items;
   };
 
-  console.log("data", data);
   return (
     <div>
       <div className="text-center">Rocket: {data?.rocket.name}</div>
-      <ul className="">{buildData(data?.rocket)}</ul>
+      <div>
+        <Users />
+      </div>
+      <ul>{buildData(data?.rocket)}</ul>
     </div>
   );
 };
